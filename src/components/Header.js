@@ -26,7 +26,7 @@ const Redirect = styled(NavLink)`
   color: black;
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
-  margin: 20px;
+  margin: 20px 40px;
   &:hover {
     text-decoration: underline;
   }

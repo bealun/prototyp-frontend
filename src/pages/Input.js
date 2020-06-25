@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { useHistory } from 'react-router-dom'
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
+import swal from 'sweetalert'
 
 export const Input = () => {
   const [username, setUsername] = useState('')
@@ -24,7 +25,12 @@ export const Input = () => {
         if (!res.ok) {
           console.log('Error!')
         } else {
-          alert('Success!')
+          swal({
+            title: "Success!",
+            text: "Your file is uploaded",
+            icon: "success",
+            button: "OK",
+          })
           return res.json()
         }
       })
@@ -37,9 +43,6 @@ export const Input = () => {
         })
           .then((res) => res.json())
           .then(() => {
-            setUsername('')
-            setDescription('')
-            setFileName()
             history.push('/list')
           })
       })
@@ -64,7 +67,8 @@ export const Input = () => {
 
       <InputLabel>
         Description:
-        <InputField required
+        <InputField
+          maxLength="60"
           type="text"
           onChange={(event) =>
             setDescription(event.target.value)}
@@ -148,7 +152,7 @@ const PostButton = styled.button`
   font-size: 18px;
   border-radius: 5px;
   border: none;
-  background: seagreen;
+  background: darkorange;;
   color: white;
   font-weight: 700;
   transition: 0.2s ease-in-out;
