@@ -73,20 +73,20 @@ export const Input = () => {
         />
       </InputLabel>
 
-      <InputLabel>
-        Upload your file:
+      <FileLabel>
+         + Upload your file
         <InputField required
           type="file"
+          style={{ display: 'none' }}
           ref={fileInput}
-          placeholder="Image"
           onChange={(event) => {
             setFileName(event.target.files[0].name)
           }}
         />
-      </InputLabel>
-      <h4>{fileName}</h4>
+      </FileLabel>
+      <Filename>{fileName}</Filename>
 
-      <button type="submit">POST</button>
+      <PostButton type="submit">POST</PostButton>
     </FormInputs>
   )
 }
@@ -94,7 +94,7 @@ export const Input = () => {
 const FormInputs = styled.form`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   width: 240px;
   margin-left: auto;
   margin-right: auto;
@@ -108,12 +108,53 @@ const InputLabel = styled.label`
 
 const InputField = styled.input`
   width: 200px;
+  height: 25px;
   padding: 5px;
   border: none;
   border-bottom: 2px solid teal;
-  margin: 5px;
+  margin: 5px 0;
 
   &:active, :focus {
-    outline: 2px solid orange;
+    outline: 2px solid teal;
+  }
+
+  ::placeholder {
+    font-family: 'Roboto', sans-serif;
+  }
+`
+
+const FileLabel = styled.label`
+  margin-top: 10px;
+  width: 200px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  padding: 5px 0px 5px 8px;
+  border: 2px solid teal;
+  color: teal;
+  cursor: pointer;
+`
+
+const Filename = styled.p`
+  color: teal;
+  font-weight: normal;
+  font-size: 10px;
+  margin-bottom: 25px;
+`
+
+const PostButton = styled.button`
+  width: 120px;
+  height: 40px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: none;
+  background: seagreen;
+  color: white;
+  font-weight: 700;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
   }
 `
