@@ -2,6 +2,9 @@ import React from 'react'
 import swal from 'sweetalert'
 import styled from 'styled-components/macro'
 
+
+// Components w props to delete single item
+// Validation w SweetAlert
 export const DeleteButton = ({ id }) => {
 
   const handleRemove = (event) => {

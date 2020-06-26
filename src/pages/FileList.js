@@ -10,6 +10,7 @@ import { DeleteButton } from 'components/DeleteButton'
 export const FileList = ({ _id }) => {
   const [files, setFiles] = useState(null)
 
+  // GET list of uploads
   useEffect(() => {
     fetch('http://localhost:8080/uploads')
       .then((res) => res.json())
@@ -18,29 +19,6 @@ export const FileList = ({ _id }) => {
         setFiles(json)
       })
   }, [])
-
-  // const handleRemove = (event) => {
-  //   event.preventDefault()
-
-  //   swal({
-  //     title: 'Are you sure?',
-  //     text: "You might lose important data",
-  //     buttons: true,
-  //     dangerMode: true,
-  //   })
-  //     .then((willDelete) => {
-  //       if (willDelete) {
-  //         fetch(`http://localhost:8080/uploads/${_id}`, {
-  //           method: 'DELETE'
-  //         })
-  //           .then((res) => {
-  //             if (res.ok) {
-  //               window.location.reload(false);
-  //             }
-  //           })
-  //       }
-  //     })
-  // }
 
   return (
     <ContentWrapper>
@@ -59,10 +37,7 @@ export const FileList = ({ _id }) => {
                   target='_blank'>{file.filename}
                 </FileLink></Filenames>}
             <Date>{moment(file.createdAt).format('YYYY-MM-DD')}</Date>
-            {/* <Remove type="button" 
-            onClick={(event) => handleRemove(event)}>
-              X
-            </Remove> */}
+
             <DeleteButton id={file._id} />
           </UploadedFile>
         ))}
